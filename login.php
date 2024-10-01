@@ -36,12 +36,7 @@ session_start();
             <form method="POST" class="form-group">
                 <div class="container w-25 my-5 border rounded-3 py-3">
                     <h2 class="text-center fw-bold">LOGIN</h2>
-                    <input type="text" name="username" required placeholder="Username" class="form-control w-100 py-2 my-3 rounded-5 mx-auto" >
-                    <input type="password" name="password" required placeholder="Password" class="form-control w-100 py-2 my-3 rounded-5 mx-auto" >
-                    <div class="text-center py-2" >
-                        <button type="submit" class="btn btn-primary w-100 fw-bold fs-4 py-1 rounded-5" >LOGIN</button>
-                        <p>Don't have an account? <a href="register.php">Click here</a></p>
-                        <?php
+                    <?php
                         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $username = $_POST['username'];
                             $password = $_POST['password'];
@@ -51,10 +46,15 @@ session_start();
                                 $_SESSION['username'] = $username;
                                 header('location:welcome.php');
                             } else {
-                                echo "Invalid username or password!";
+                                echo "<p class='text-center' style='color: red;'>Invalid username or password!</p>";
                             }
                         }
                         ?>
+                    <input type="text" name="username" required placeholder="Username" class="form-control w-100 py-2 my-3 rounded-5 mx-auto" >
+                    <input type="password" name="password" required placeholder="Password" class="form-control w-100 py-2 my-3 rounded-5 mx-auto" >
+                    <div class="text-center py-2" >
+                        <button type="submit" class="btn btn-primary w-100 fw-bold fs-4 py-1 rounded-5" >LOGIN</button>
+                        <p>Don't have an account? <a href="register.php">Click here</a></p>
                     </div>
                 </div>
             </form>

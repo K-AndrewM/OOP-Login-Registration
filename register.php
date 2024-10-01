@@ -30,25 +30,26 @@ require 'user.php';
             <form method="POST">
                 <div class="container w-25 my-5 border rounded-3 py-3">
                     <h2 class="text-center fw-bold">REHISTRO</h2>
+                    <?php
+
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            $username = $_POST['username'];
+                            $password = $_POST['password'];
+
+                            $user = new User();
+                            if ($user->register($username, $password)) {
+                                echo "<p class='text-center' style='color: green;'>Registration successful!</p>" ;
+                                
+                            } else {
+                                echo "Registration failed!";
+                            }
+                        }
+                    ?>
                     <input type="text" name="username" required placeholder="Username" class="form-control w-100 py-2 my-3 rounded-5 mx-auto">
                     <input type="password" name="password" required placeholder="Password" class="form-control w-100 py-2 my-3 rounded-5 mx-auto">
                     <div class="text-center py-2">
                         <button type="submit" class="btn btn-success w-100 fw-bold fs-4 py-1 rounded-5">Register</button>
                         <p>Already have an account? <a href="login.php">Click here</a></p>
-                        <?php
-                        
-                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                            $username = $_POST['username'];
-                            $password = $_POST['password'];
-                        
-                            $user = new User();
-                            if ($user->register($username, $password)) {
-                                echo "Registration successful!";
-                            } else {
-                                echo "Registration failed!";
-                            }
-                        }
-                        ?>
                     </div>
                 </div>
             </form>
