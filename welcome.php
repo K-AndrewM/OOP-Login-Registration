@@ -22,10 +22,8 @@ $userinfo = $oauth->userinfo->get();
 
 $user_email = $userinfo->email;
 $user_name = $userinfo->givenName;
-$user_gender = $userinfo->gender;
-
-echo "Welcome, " .$user_name;
-
+$user_lastname = $userinfo->familyName;
+$user_pic = $userinfo->picture;
 ?>
 <!doctype html>
 <html lang="en">
@@ -49,9 +47,23 @@ echo "Welcome, " .$user_name;
 
     <body>
         <header>
-            <!-- place navbar here -->
+            <div class="container-fluid bg-dark text-light">
+                <h4 class="py-3 text-center">GOOGLE API</h4>
+            </div>
         </header>
         <main>
+            <div class="container">
+                <div class="container my-5">
+                    <div class="container text-center"><h2>Welcome</h2></div>
+                    <div class="container text-center">
+                        <img src="<?=$user_pic?>" alt="" class="rounded-circle my-3" style="width: 200px;">
+                    </div>
+                    <div class="container text-center">
+                        <h3><?=$user_name, " ". $user_lastname ?></h3>
+                        <h4><?=$user_email?></h4>
+                    </div>
+                </div>
+            </div>
         <?php
 
         session_start();

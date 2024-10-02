@@ -20,6 +20,7 @@ require 'user.php';
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="styless.css">
     </head>
 
     <body>
@@ -27,32 +28,49 @@ require 'user.php';
             <!-- place navbar here -->
         </header>
         <main>
-            <form method="POST">
-                <div class="container w-25 my-5 border rounded-3 py-3">
-                    <h2 class="text-center fw-bold">REHISTRO</h2>
-                    <?php
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                    <div class="col d-flex align-items-center">
+                        <div class="h-50 w-75 box">
+                            <h1 class="fw-bold text-center mt-5">OBJECT-ORIENTED <br> LOGIN/REGISTRATION</h1>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col">
+                        <form method="POST" class="form-group">
+                            <div class="box">
+                                <h3 class="fw-bold pb-2">Register an account</h3>
+                                <?php
 
-                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                            $username = $_POST['username'];
-                            $password = $_POST['password'];
+                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                    $username = $_POST['username'];
+                                    $password = $_POST['password'];
 
-                            $user = new User();
-                            if ($user->register($username, $password)) {
-                                echo "<p class='text-center' style='color: green;'>Registration successful!</p>" ;
-                                
-                            } else {
-                                echo "Registration failed!";
-                            }
-                        }
-                    ?>
-                    <input type="text" name="username" required placeholder="Username" class="form-control w-100 py-2 my-3 rounded-5 mx-auto">
-                    <input type="password" name="password" required placeholder="Password" class="form-control w-100 py-2 my-3 rounded-5 mx-auto">
-                    <div class="text-center py-2">
-                        <button type="submit" class="btn btn-success w-100 fw-bold fs-4 py-1 rounded-5">Register</button>
-                        <p>Already have an account? <a href="login.php">Click here</a></p>
+                                    $user = new User();
+                                    if ($user->register($username, $password)) {
+                                        echo "<p class='text-center' style='color: green;'>Registration successful!</p>" ;
+                                        
+                                    } else {
+                                        echo "Registration failed!";
+                                    }
+                                }
+                                ?>
+                                <div class="pt-2 pb-1">
+                                    <input type="text" name="username" required placeholder="Username" class="form-control rounded-3">
+                                </div>
+                                <div class="pt-2 pb-1">
+                                    <input type="password" name="password" required placeholder="Password" class="form-control rounded-3">
+                                </div>
+                                <div class="text-center py-2">
+                                    <button type="submit" class="btn btn-success fw-bold w-100 rounded-3 py-2 mb-1">Register</button>
+                                    <p>Already have an account? <a href="login.php">Log in</a></p>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </main>
         <footer>
             <!-- place footer here -->
