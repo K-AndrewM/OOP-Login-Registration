@@ -1,4 +1,31 @@
-<?php include('dbcon.php');
+<?php 
+include('dbcon.php');
+
+require __DIR__ .'/vendor/autoload.php';
+$client = new Google\Client;
+
+$client->setCLientId("175815025217-nisclrqlgnrj1q3jbnr110ink9s1svaf.apps.googleusercontent.com");
+$client->setClientSecret("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");
+$client->setRedirectUri("http://localhost/loginRegister-OOP/welcome.php");
+
+if (!isset($_GET["code"])) {
+    exit("Login Failed");
+}
+
+$token = $client->fetchAccessTokenWithAuthCode($_GET["code"]);
+
+$client->setAccessToken($token['access_token']);
+
+$oauth = new Google\Service\Oauth2($client);
+
+$userinfo = $oauth->userinfo->get();
+
+$user_email = $userinfo->email;
+$user_name = $userinfo->givenName;
+$user_gender = $userinfo->gender;
+
+echo "Welcome, " .$user_name;
+
 ?>
 <!doctype html>
 <html lang="en">

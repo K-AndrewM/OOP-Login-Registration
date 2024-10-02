@@ -1,7 +1,18 @@
 <?php
 require 'user.php';
-
 session_start();
+
+require __DIR__ .'/vendor/autoload.php';
+$client = new Google\Client;
+
+$client->setCLientId("175815025217-nisclrqlgnrj1q3jbnr110ink9s1svaf.apps.googleusercontent.com");
+$client->setClientSecret("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");
+$client->setRedirectUri("http://localhost/loginRegister-OOP/welcome.php");
+
+$client->addScope("email");
+$client->addScope("profile");
+
+$url = $client->createAuthUrl();
 
 ?>
 
@@ -55,6 +66,7 @@ session_start();
                     <div class="text-center py-2" >
                         <button type="submit" class="btn btn-primary w-100 fw-bold fs-4 py-1 rounded-5" >LOGIN</button>
                         <p>Don't have an account? <a href="register.php">Click here</a></p>
+                        <a href="<?= $url ?>"><img src="img\googleSignIn.svg" alt=""></a>
                     </div>
                 </div>
             </form>
