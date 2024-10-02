@@ -9,7 +9,7 @@ $client->setClientSecret("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");
 $client->setRedirectUri("http://localhost/loginRegister-OOP/welcome.php");
 
 if (!isset($_GET["code"])) {
-    exit("Login Failed");
+    exit("Google Login Failed");
 }
 
 $token = $client->fetchAccessTokenWithAuthCode($_GET["code"]);
